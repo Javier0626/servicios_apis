@@ -1,0 +1,103 @@
+USUARIOS:
+----------------
+
+VER USUARIOS
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Usuarios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:VerUsuarios/>
+   </soapenv:Body>
+</soapenv:Envelope>
+----------------
+
+VER DETALLE
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Usuarios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:VerUsuario>
+         <id>123</id>
+      </tns:VerUsuario>
+   </soapenv:Body>
+</soapenv:Envelope>
+----------------
+
+CREAR USUARIO
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Usuarios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:CrearUsuario>
+         <data>
+            <user_name>Juan</user_name>
+            <last_name>Pérez</last_name>
+            <nombre_doc>Documento1</nombre_doc>
+            <address>Dirección 123</address>
+            <telephone>1234567890</telephone>
+            <email>juan@example.com</email>
+         </data>
+      </tns:CrearUsuario>
+   </soapenv:Body>
+</soapenv:Envelope>
+----------------
+
+
+ACTUALIZAR USUARIO
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Usuarios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:ActualizarUsuario>
+         <data>
+            <user_name>Juan</user_name>
+            <lastname>Pérez</lastname>
+            <nombre_doc>Documento1</nombre_doc>
+            <address>Direccion 123</address>
+            <telephone>1234567890</telephone>
+            <email>juan@example.com</email>
+         </data>
+         <id>123</id>
+      </tns:ActualizarUsuario>
+   </soapenv:Body>
+</soapenv:Envelope>
+----------------
+
+
+ELIMINAR USUARIO
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Usuarios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:EliminarUsuario>
+         <id>123</id>
+      </tns:EliminarUsuario>
+   </soapenv:Body>
+</soapenv:Envelope>
+----------------
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+LOGIN:
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="LoginUsuario">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:InicioSesion>
+         <data>
+         <nick_name>usuarioEjemplo</nick_name>
+         <password>contraseñaEjemplo</password>
+         <estado_id>1</estado_id> <!-- 1- Activo 2- Inactivo 3- Bloqueado -->
+         <rol_id>1</rol_id> <!-- 1- Admin 2- Empleado 3- Cliente -->
+         <usuario_id>123</usuario_id> <!-- ID del usuario que se va loguear -->
+         </data>
+      </tns:InicioSesion>
+   </soapenv:Body>
+</soapenv:Envelope>     
+----------------

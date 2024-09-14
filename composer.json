@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravel/installer": "^5.8",
+        "econea/nusoap": "^0.9.17"
+    }
+}

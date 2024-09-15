@@ -46,6 +46,7 @@ function InicioSesion($data)
     return $controller->loginUser($data);
 }
 
+
 //-----------------------
 
 // Procesar solicitud SOAP

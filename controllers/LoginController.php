@@ -13,9 +13,11 @@ class LoginController
 
     public function loginUser($data)
     {
-        if (!isset($data['nick_name'], $data['password'], $data['estado_id'], $data['rol_id'], $data['usuario_id'])) {
-            return "Error: Credenciales incorrectas o faltan campos requeridos.";
+
+        if (!isset($data['email']) && !isset($data['password'])) {
+            return "Error: Faltan campos requeridos.";
         }
+
         return $this->loginModel->login($data);
     }
 }

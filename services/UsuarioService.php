@@ -23,7 +23,8 @@ $server->wsdl->addComplexType(
         'nombre_doc' => array('name' => 'nombre_doc', 'type' => 'xsd:string'),
         'address' => array('name' => 'address', 'type' => 'xsd:string'),
         'telephone' => array('name' => 'telephone', 'type' => 'xsd:string'),
-        'email' => array('name' => 'email', 'type' => 'xsd:string')
+        'email' => array('name' => 'email', 'type' => 'xsd:string'),
+        'password' => array('name' => 'password', 'type' => 'xsd:string')
     )
 );
 

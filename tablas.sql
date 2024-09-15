@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `address` varchar(250) DEFAULT NULL,
   `telephone` varchar(250) DEFAULT NULL,
   `email` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
   `created_ad` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

@@ -12,21 +12,24 @@ class Login
     // Inicio de sesion deusuario
     public function login($data)
     {
-        $password_hashed = password_hash($data['password'], PASSWORD_BCRYPT);
-        
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO login (nick_name, password, estado_id, rol_id, usuario_id, created_ad, updated_at)
-            VALUES (:nick_name, :password, :estado_id, :rol_id, :usuario_id, NOW(), NOW() )");
+            $stmt =$this->pdo->prepare("SELECT * FROM usuario WHERE email = ?");
+            $stmt->execute([$data['email']]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Bind parameters
-            $stmt->bindParam(':nick_name', $data['nick_name']);
-            $stmt->bindParam(':password', $password_hashed);
-            $stmt->bindParam(':estado_id', $data['estado_id']);
-            $stmt->bindParam(':rol_id', $data['rol_id']);
-            $stmt->bindParam(':usuario_id', $data['usuario_id']);
+             // Si no se encuentra el usuario
+            if (!$user) {
+                return "Usuario no encontrado";
+            }
 
-            $stmt->execute();
-            return "Usuario inició sesion correctamente";
+            // Verificar si la contraseña coincide
+            // if (password_verify($data['password'], $user['password'])) {
+            if ($data['password'] == $user['password']) {
+                return "Usuario inició sesión correctamente";
+            } else {
+                return "Contraseña incorrecta";
+            }
+
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }

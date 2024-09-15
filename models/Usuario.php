@@ -32,8 +32,9 @@ class User
     public function create($data)
     {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO usuario (user_name, last_name, nombre_doc, address, telephone, email, created_ad, updated_at)
-                                         VALUES (:user_name, :last_name, :nombre_doc, :address, :telephone, :email, NOW(), NOW() )");
+            $password = password_hash($data['password'], PASSWORD_BCRYPT);
+            $stmt = $this->pdo->prepare("INSERT INTO usuario (user_name, last_name, nombre_doc, address, telephone, email, password, created_ad, updated_at)
+                                         VALUES (:user_name, :last_name, :nombre_doc, :address, :telephone, :email, :password, NOW(), NOW() )");
 
             // Bind parameters
             $stmt->bindParam(':user_name', $data['user_name']);
@@ -42,6 +43,7 @@ class User
             $stmt->bindParam(':address', $data['address']);
             $stmt->bindParam(':telephone', $data['telephone']);
             $stmt->bindParam(':email', $data['email']);
+            $stmt->bindParam(':password', $password);
 
             $stmt->execute();
             return "Usuario guardado correctamente";

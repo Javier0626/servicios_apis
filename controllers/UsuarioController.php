@@ -23,7 +23,7 @@ class UserController
 
     public function createUser($data)
     {
-        if (!isset($data['user_name'], $data['last_name'], $data['nombre_doc'], $data['address'], $data['telephone'], $data['email'])) {
+        if (!isset($data['user_name'], $data['last_name'], $data['nombre_doc'], $data['address'], $data['telephone'], $data['email'], $data['password'])) {
             return "Error: Faltan campos requeridos.";
         }
         return $this->userModel->create($data);

@@ -23,10 +23,10 @@ class Login
             }
             
             // Verificar si la contraseña coincide
-            if (password_verify($data['password'],'$2y$10$6TDZolAeLEC3VQ6Uqt5/1e58YucAT8xPSCm3icmJJwDbCr22VmTDa')) {
+            if (password_verify($data['password'],$user['password'])) {
                 return "Usuario inició sesión correctamente";
             } else {
-                return "Contraseña incorrecta";
+                return "Contraseña incorrecta"; 
             }
 
         } catch (PDOException $e) {

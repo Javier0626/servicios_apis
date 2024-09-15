@@ -18,11 +18,8 @@ $server->wsdl->addComplexType(
     'all',
     '',
     array(
-        'nick_name' => array('name' => 'nick_name', 'type' => 'xsd:string'),
+        'email' => array('name' => 'email', 'type' => 'xsd:string'),
         'password' => array('name' => 'password', 'type' => 'xsd:string'),
-        'estado_id' => array('name' => 'estado_id', 'type' => 'xsd:int'),
-        'rol_id' => array('name' => 'rol_id', 'type' => 'xsd:int'),
-        'usuario_id' => array('name' => 'usuario_id', 'type' => 'xsd:int'),
     )
 );
 

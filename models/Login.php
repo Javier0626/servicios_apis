@@ -21,10 +21,9 @@ class Login
             if (!$user) {
                 return "Usuario no encontrado";
             }
-
+            
             // Verificar si la contraseña coincide
-            // if (password_verify($data['password'], $user['password'])) {
-            if ($data['password'] == $user['password']) {
+            if (password_verify($data['password'],'$2y$10$6TDZolAeLEC3VQ6Uqt5/1e58YucAT8xPSCm3icmJJwDbCr22VmTDa')) {
                 return "Usuario inició sesión correctamente";
             } else {
                 return "Contraseña incorrecta";

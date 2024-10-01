@@ -1,6 +1,3 @@
-Categorias:
-----------------
-
 VER Categorias
 ----------------
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Categorias">
@@ -9,8 +6,7 @@ VER Categorias
       <tns:VerCategorias/>
    </soapenv:Body>
 </soapenv:Envelope>
-
-
+----------------
 
 VER DETALLE
 ----------------
@@ -22,8 +18,7 @@ VER DETALLE
       </tns:VerCategoria>
    </soapenv:Body>
 </soapenv:Envelope>
-
-
+----------------
 
 CREAR Categoria
 ----------------
@@ -39,7 +34,6 @@ CREAR Categoria
 </soapenv:Envelope>
 ----------------
 
-
 ACTUALIZAR Categoria
 ----------------
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Categorias">
@@ -54,7 +48,6 @@ ACTUALIZAR Categoria
    </soapenv:Body>
 </soapenv:Envelope>
 ----------------
-
 
 ELIMINAR Categoria
 ----------------

@@ -1,6 +1,3 @@
-USUARIOS:
-----------------
-
 VER USUARIOS
 ----------------
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="Usuarios">
@@ -37,12 +34,14 @@ CREAR USUARIO
             <telephone>1234567890</telephone>
             <email>javier@gmail.com</email>
             <password>123.</password>
+            <nick_name>JuanP</nick_name> 
+            <estado_id>1</estado_id>
+            <rol_id>2</rol_id>
          </data>
       </tns:CrearUsuario>
    </soapenv:Body>
 </soapenv:Envelope>
 ----------------
-
 
 ACTUALIZAR USUARIO
 ----------------
@@ -52,18 +51,21 @@ ACTUALIZAR USUARIO
       <tns:ActualizarUsuario>
          <data>
             <user_name>Juan</user_name>
-            <lastname>Pérez</lastname>
+            <last_name>Pérez</last_name>
             <nombre_doc>Documento1</nombre_doc>
-            <address>Direccion 123</address>
+            <address>Dirección 123</address>
             <telephone>1234567890</telephone>
-            <email>juan@example.com</email>
+            <email>javier@gmail.com</email>
+            <password>nuevoPassword123.</password>
+            <nick_name>JuanP</nick_name>
+            <estado_id>1</estado_id>
+            <rol_id>2</rol_id>
          </data>
-         <id>123</id>
+         <id>1</id>
       </tns:ActualizarUsuario>
    </soapenv:Body>
 </soapenv:Envelope>
 ----------------
-
 
 ELIMINAR USUARIO
 ----------------
@@ -76,14 +78,6 @@ ELIMINAR USUARIO
    </soapenv:Body>
 </soapenv:Envelope>
 ----------------
-
-
-
-
-
---------------------------------------------------------------------------------------------------------------------------------
-
-
 
 LOGIN:
 ----------------

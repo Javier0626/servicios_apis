@@ -87,42 +87,62 @@ $server->register(
     'Eliminar un Producto'
 );
 
+// Registrar método SOAP para filtrar un color
+$server->register(
+    'FiltrarProducto',
+    array('search' => 'tns:string'),
+    array('return' => 'xsd:Array'),
+    $namespace,
+    false,
+    'rpc',
+    'encoded',
+    'Detalle de un Producto'
+);
+
 
 // Función que llama al controlador para ver todos los Productos
 function VerProductos() {
     $pdo = getConnection();
-    $controller = new UserController($pdo);
-    return $controller->getAllUsers();
+    $controller = new ProductoController($pdo);
+    return $controller->getAll();
 }
 
 // Función que llama al controlador para obtener el detalle de uh Producto
 function VerProducto($id) {
     $pdo = getConnection();
-    $controller = new UserController($pdo);
-    return $controller->getUserDetail($id);
+    $controller = new ProductoController($pdo);
+    return $controller->getDetail($id);
 }
 
 // Función que llama al controlador para crear Producto
 function CrearProducto($data) {
     $pdo = getConnection();
-    $controller = new UserController($pdo);
-    return $controller->createUser($data);
+
+    $controller = new ProductoController($pdo);
+    return $controller->create($data);
 }
 
 // Función que llama al controlador para actualizar Producto
 function ActualizarProducto($data, $id) {
     $pdo = getConnection();
-    $controller = new UserController($pdo);
-    return $controller->updateUser($data, $id);
+    $controller = new ProductoController($pdo);
+    return $controller->update($data, $id);
 }
-
 
 // Función que llama al controlador para eliminar Producto
 function EliminarProducto($id) {
     $pdo = getConnection();
-    $controller = new UserController($pdo);
-    return $controller->deleteUser($id);
+    $controller = new ProductoController($pdo);
+    return $controller->delete($id);
 }
+
+// Función que llama al controlador para filtrar los productos
+function FiltrarProducto($search) {
+    $pdo = getConnection();
+    $controller = new ProductoController($pdo);
+    return $controller->getSearch($search);
+}
+
 
 //-----------------------
 

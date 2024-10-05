@@ -1,6 +1,6 @@
 <?php
 // models/productos.php
-class User
+class Productos
 {
     private $pdo;
 
@@ -32,15 +32,14 @@ class User
     public function create($data)
     {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO productos (user_name, last_name, nombre_doc, address, telephone, email, password, created_ad, updated_at)
-                                         VALUES (:user_name, :last_name, :nombre_doc, :address, :telephone, :email, :password, NOW(), NOW() )");
+            $stmt = $this->pdo->prepare("INSERT INTO productos (nombre, precio, stock, descripcion, categoria_id)
+                                         VALUES (:nombre, :precio, :stock, :descripcion, :categoria_id)");
             // Bind parameters
-            $stmt->bindParam(':user_name', $data['user_name']);
-            $stmt->bindParam(':last_name', $data['last_name']);
-            $stmt->bindParam(':nombre_doc', $data['nombre_doc']);
-            $stmt->bindParam(':address', $data['address']);
-            $stmt->bindParam(':telephone', $data['telephone']);
-            $stmt->bindParam(':email', $data['email']);
+            $stmt->bindParam(':nombre', $data['nombre']);
+            $stmt->bindParam(':precio', $data['precio']);
+            $stmt->bindParam(':stock', $data['stock']);
+            $stmt->bindParam(':descripcion', $data['descripcion']);
+            $stmt->bindParam(':categoria_id', $data['categoria_id']);
             $stmt->execute();
             return "productos guardado correctamente";
         } catch (PDOException $e) {
@@ -51,16 +50,15 @@ class User
     // Actualizar productos
     public function update($data, $id)
     {
-        $sql = "UPDATE productos SET user_name = :user_name, last_name = :last_name, nombre_doc = :nombre_doc, address = :address, telephone = :telephone, email = :email WHERE id = :id";
+        $sql = "UPDATE productos SET nombre = :nombre, precio = :precio, stock = :stock, descripcion = :descripcion, categoria_id = :categoria_id WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'id' => $id,
-            'user_name' => $data['user_name'],
-            'last_name' => $data['last_name'],
-            'nombre_doc' => $data['nombre_doc'],
-            'address' => $data['address'],
-            'telephone' => $data['telephone'],
-            'email' => $data['email']
+            'nombre' => $data['nombre'],
+            'precio' => $data['precio'],
+            'stock' => $data['stock'],
+            'descripcion' => $data['descripcion'],
+            'categoria_id' => $data['categoria_id'],
         ]);
         return "productos actualizado correctamente";
     }
@@ -71,6 +69,29 @@ class User
         $sql = "DELETE FROM productos WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['id' => $id]);
-        return "productos eliminado correctamente";
+        return "producto eliminado correctamente";
     }
+
+    public function getBySearch($search)
+    {
+        // Consulta SQL para buscar en múltiples columnas con LIKE
+        $sql = "SELECT * FROM productos 
+                WHERE id = :search
+                OR nombre LIKE :likeSearch 
+                OR precio = :search
+                OR stock = :search
+                OR descripcion LIKE :likeSearch 
+                OR categoria_id = :search";
+        
+        // Preparar la sentencia
+        $stmt = $this->pdo->prepare($sql);
+        
+        // Ejecutar la sentencia, utilizando el string para la búsqueda exacta y parcial
+        $stmt->execute([
+            'search' => $search,
+            'likeSearch' => '%' . $search . '%'
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }

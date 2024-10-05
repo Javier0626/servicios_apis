@@ -2,40 +2,45 @@
 // controllers/UsuarioController.php
 require_once __DIR__ . '/../models/Productos.php';
 
-class UserController
+class ProductoController
 {
-    private $userModel;
+    private $productoModel;
 
     public function __construct($pdo)
     {
-        $this->userModel = new User($pdo);
+        $this->productoModel = new Productos($pdo);
     }
 
-    public function getAllUsers()
+    public function getAll()
     {
-        return $this->userModel->getUsers();
+        return $this->productoModel->get();
     }
 
-    public function getUserDetail($id)
+    public function getDetail($id)
     {
-        return $this->userModel->getUserById($id);
+        return $this->productoModel->getById($id);
     }
 
-    public function createUser($data)
+    public function create($data)
     {
-        if (!isset($data['user_name'], $data['last_name'], $data['nombre_doc'], $data['address'], $data['telephone'], $data['email'], $data['password'])) {
+        if (!isset($data['nombre'], $data['precio'], $data['stock'], $data['descripcion'], $data['categoria_id'])) {
             return "Error: Faltan campos requeridos.";
         }
-        return $this->userModel->create($data);
+        return $this->productoModel->create($data);
     }
 
-    public function updateUser($data, $id)
+    public function update($data, $id)
     {
-        return $this->userModel->update($data, $id);
+        return $this->productoModel->update($data, $id);
     }
 
-    public function deleteUser($id)
+    public function delete($id)
     {
-        return $this->userModel->delete($id);
+        return $this->productoModel->delete($id);
+    }
+
+    public function getSearch($search)
+    {
+        return $this->productoModel->getBySearch($search);
     }
 }

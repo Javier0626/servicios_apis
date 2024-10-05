@@ -13,8 +13,8 @@ class Login
     public function login($data)
     {
         try {
-            $stmt =$this->pdo->prepare("SELECT * FROM usuario WHERE email = ?");
-            $stmt->execute([$data['email']]);
+            $stmt =$this->pdo->prepare("SELECT * FROM login WHERE nick_name = ?");
+            $stmt->execute([$data['nick_name']]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
              // Si no se encuentra el usuario

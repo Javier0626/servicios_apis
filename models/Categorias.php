@@ -1,6 +1,6 @@
 <?php
-// models/Usuario.php
-class User
+// models/Categorias.php
+class Categorias
 {
     private $pdocatalogo;
 
@@ -58,7 +58,7 @@ class User
     // Eliminar usuario
     public function delete($id)
     {
-        $sql = "DELETE FROM usuario WHERE id = :id";
+        $sql = "DELETE FROM categorias WHERE id = :id";
         $stmt = $this->pdocatalogo->prepare($sql);
         $stmt->execute(['id' => $id]);
         return "Registro eliminado correctamente";

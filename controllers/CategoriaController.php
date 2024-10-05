@@ -8,7 +8,7 @@ class CategoriaController
 
     public function __construct($pdo)
     {
-        $this->categoriaModel = new User($pdo);
+        $this->categoriaModel = new Categorias($pdo);
     }
 
     public function getAll()

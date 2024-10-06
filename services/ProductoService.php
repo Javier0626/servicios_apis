@@ -99,6 +99,19 @@ $server->register(
     'Detalle de un Producto'
 );
 
+// Registrar método SOAP para ver los productos por categoria
+$server->register(
+    'FiltrarCategoria',
+    array('categoria_id' => 'tns:int'),
+    array('return' => 'xsd:Array'),
+    $namespace,
+    false,
+    'rpc',
+    'encoded',
+    'Filtrar por categoria'
+);
+
+
 
 // Función que llama al controlador para ver todos los Productos
 function VerProductos() {
@@ -143,6 +156,11 @@ function FiltrarProducto($search) {
     return $controller->getSearch($search);
 }
 
+function FiltrarCategoria($categoria_id) {
+    $pdo = getConnection();
+    $controller = new ProductoController($pdo);
+    return $controller->getByCategoria($categoria_id);
+}
 
 //-----------------------
 

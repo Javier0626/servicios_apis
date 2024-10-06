@@ -94,4 +94,13 @@ class Productos
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+     // Obtener productos por ID
+     public function getByCategoriaId($id)
+     {
+         $sql = "SELECT * FROM productos WHERE categoria_id = :categoria_id";
+         $stmt = $this->pdo->prepare($sql);
+         $stmt->execute(['categoria_id' => $id]);
+
+         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+     }
 }

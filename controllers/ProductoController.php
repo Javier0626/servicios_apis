@@ -43,4 +43,9 @@ class ProductoController
     {
         return $this->productoModel->getBySearch($search);
     }
+
+    public function getByCategoria($id)
+    {
+        return $this->productoModel->getByCategoriaId($id);
+    }
 }

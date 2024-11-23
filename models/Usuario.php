@@ -54,23 +54,30 @@ class User
             // Hash de la contraseña
             $password = password_hash($data['password'], PASSWORD_BCRYPT);
 
+            // generar un token manual
+            $token = bin2hex(random_bytes(32));
+
+            // estado activo por defecto
+            $status = 1;
+
             // Insertamos en la tabla login
-            $stmt = $this->pdo->prepare("INSERT INTO login (nick_name, password, estado_id, rol_id, usuario_id)
-                                         VALUES (:nick_name, :password, :estado_id, :rol_id, :usuario_id)");
+            $stmt = $this->pdo->prepare("INSERT INTO login (nick_name, password, token, estado_id, rol_id, usuario_id, status)
+                                         VALUES (:nick_name, :password, :token, :estado_id, :rol_id, :usuario_id, :status)");
 
             // Bind de parámetros para login
             $stmt->bindParam(':nick_name', $data['nick_name']);
             $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':token', $token);
             $stmt->bindParam(':estado_id', $data['estado_id']);
             $stmt->bindParam(':rol_id', $data['rol_id']);
             $stmt->bindParam(':usuario_id', $usuario_id); // Vinculamos el usuario recién creado
+            $stmt->bindParam(':status', $status); // estado de login en 1 (activo) 0(inactivo)
             $stmt->execute();
 
             // Confirmar la transacción
             $this->pdo->commit();
 
             return "Usuario y login creados correctamente";
-
         } catch (PDOException $e) {
             // Revertir la transacción en caso de error
             $this->pdo->rollBack();

@@ -86,10 +86,23 @@ LOGIN:
    <soapenv:Body>
       <tns:InicioSesion>
          <data>
-         <email>javier@gmail.com</email>
+         <nick_name>JuanP</nick_name>
          <password>123.</password>
          </data>
       </tns:InicioSesion>
    </soapenv:Body>
 </soapenv:Envelope>     
+----------------
+
+
+LOGOUT:
+----------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="LoginUsuario">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:CerrarSesion>
+         <usuario_id>123</usuario_id>
+      </tns:CerrarSesion>
+   </soapenv:Body>
+</soapenv:Envelope>
 ----------------

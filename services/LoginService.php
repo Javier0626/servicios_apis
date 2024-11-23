@@ -35,12 +35,52 @@ $server->register(
     'Servicio para insertar las credenciales de inicio de sesión de un usuario'
 );
 
+// Registrar el método SOAP para cerrar la sesión
+$server->register(
+    'CerrarSesion',
+    array('usuario_id' => 'xsd:int'),
+    array('return' => 'xsd:string'),
+    $namespace,
+    false,
+    'rpc',
+    'encoded',
+    'Servicio para cerrar la sesión de un usuario'
+);
+
+// Registrar método SOAP para la validación de la sesión del usuario
+$server->register(
+    'ValidarSesion',
+    array('usuario_id' => 'xsd:string'),
+    array('return' => 'xsd:string'),
+    $namespace,
+    false,
+    'rpc',
+    'encoded',
+    'Servicio para validar si un usuario está logueado'
+);
+
 // Función que llama al controlador para crear las credenciales de inicio de sesion de un usuario
 function InicioSesion($data)
 {
     $pdo = getConnection();
     $controller = new LoginController($pdo);
     return $controller->loginUser($data);
+}
+
+// Función que llama al controlador para cerrar la sesión del usuario
+function CerrarSesion($usuario_id)
+{
+    $pdo = getConnection();
+    $controller = new LoginController($pdo);
+    return $controller->logoutUser($usuario_id);
+}
+
+// Función que llama al controlador para validar la sesión de un usuario
+function ValidarSesion($token)
+{
+    $pdo = getConnection();
+    $controller = new LoginController($pdo);
+    return $controller->validarSesionUsuario($token);
 }
 
 

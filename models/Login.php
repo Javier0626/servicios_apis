@@ -59,7 +59,7 @@ class Login
             }
 
             // Eliminar la sesión del usuario
-            $updateStmt = $this->pdo->prepare("UPDATE login SET status = 0 WHERE usuario_id = ?");
+            $updateStmt = $this->pdo->prepare("UPDATE login SET status = 0, token = null WHERE usuario_id = ?");
             $updateStmt->execute([$usuario_id]);
 
             return "Sesión cerrada correctamente";
